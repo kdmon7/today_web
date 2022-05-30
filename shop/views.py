@@ -4,7 +4,7 @@ from .models import Post
 
 
 def post_view(request):
-    #POST 방시
+    #POST 방식
     if request.method == 'POST': 
         post = Post()
         post.post_id = request.POST['post_id']
