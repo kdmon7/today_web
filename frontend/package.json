@@ -1,7 +1,7 @@
 {
-    "name": "wrapkit-ui",
+    "name": "Today",
     "version": "0.1.0",
-    "homepage": "https://www.wrappixel.com/demos/free-admin-templates/wrapkit-react-lite/",
+    "homepage": ".",
     "private": true,
     "devDependencies": {
         "node": "^8.15.0"
