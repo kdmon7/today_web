@@ -23,5 +23,5 @@ from shop import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', shop.views.post_view, name='post'),
-    re_path('.*', TemplateView.as_view(templates_name='index.html')),
+    re_path('.*', TemplateView.as_view(templates_name='index.js')),
 ]
