@@ -25,8 +25,8 @@ class member(models.Model):
 class bbs_Document(models.Model):
     bbs_doc_code = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=255)
-    product_content = models.TextField(null=True)
-    product_price = models.IntegerField(max_length=11)
+    product_content = models.TextField()
+    product_price = models.CharField(max_length=255)
     sold = models.CharField(max_length=1)
     edit_date = models.DateTimeField(auto_now=True)
     reg_date = models.DateTimeField(auto_now_add=True)
@@ -95,7 +95,7 @@ class qna_answer(models.Model):
     answer = models.TextField()
     edit_date = models.DateTimeField(auto_now=True)
     reg_date = models.DateTimeField(auto_now_add=True)
-    qna_qna_code = member_user_code = models.ForeignKey(qna, on_delete=models.CASCADE)
+    qna_qna_code = models.ForeignKey(qna, on_delete=models.CASCADE)
 
 
 class n_product(models.Model):
