@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'today_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
