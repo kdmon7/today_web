@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class member(models.Model):
-    user_num = models.IntegerField(primary_key=True)
+    user_num = models.AutoField(primary_key=True)
     user_id = models.CharField(max_length=150)
     user_pw = models.CharField(max_length=255)
     user_name = models.CharField(max_length=10)
@@ -23,90 +23,90 @@ class member(models.Model):
 
 
 class bbs_Document(models.Model):
-    bbs_doc_code = models.IntegerField(primary_key=True)
+    bbs_doc_code = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=255)
     product_content = models.TextField(null=True)
-    product_price
-    sold
-    edit_date
-    reg_date
-    cate
-    member_user_code
+    product_price = models.IntegerField(max_length=11)
+    sold = models.CharField(max_length=1)
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    cate = models.CharField(max_length=15)
+    member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
 
 
 class bbs_Comment(models.Model):
-    bbs_cmt_code = models.IntegerField(primary_key=True)
-    comment
-    reg_date
-    edit_date
-    member_user_code
-    bbs_document_bbs_doc_code
+    bbs_cmt_code = models.AutoField(primary_key=True)
+    comment = models.TextField()
+    reg_date = models.DateTimeField(auto_now_add=True)
+    edit_date = models.DateTimeField(auto_now=True)
+    member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
+    bbs_document_bbs_doc_code = models.ForeignKey(bbs_Document, on_delete=models.CASCADE)
 
 
-class bss_file(models.Model):
-    bbs_file_code = models.IntegerField(primary_key=True)
-    origin_name
-    file_path
-    content_type
-    file_size
-    reg_date
-    edit_date
-    bbs_document_bbs_doc_code
+class bbs_file(models.Model):
+    bbs_file_code = models.AutoField(primary_key=True)
+    origin_name = models.CharField(max_length=255)
+    file_path = models.CharField(max_length=255)
+    content_type = models.CharField(max_length=50)
+    file_size = models.IntegerField()
+    reg_date = models.DateTimeField(auto_now_add=True)
+    edit_date = models.DateTimeField(auto_now=True)
+    bbs_document_bbs_doc_code = models.ForeignKey(bbs_Document, on_delete=models.CASCADE)
 
 
 class bss_cate(models.Model):
-    cate_code = models.IntegerField(primary_key=True)
-    user_cate
-    edit_date
-    reg_date
-    bbs_document_bbs_doc_code
+    cate_code = models.AutoField(primary_key=True)
+    user_cate = models.CharField(max_length=15, null=True)
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    bbs_document_bbs_doc_code = models.ForeignKey(bbs_Document, on_delete=models.CASCADE)
 
 
 class notice(models.Model):
-    notice_code = models.IntegerField(primary_key=True)
-    title
-    context
-    edit_date
-    reg_date
-    member_user_code
+    notice_code = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    context = models.TextField()
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
 
 
 class faq(models.Model):
-    faq_code = models.IntegerField(primary_key=True)
-    title
-    context
-    edit_date
-    reg_date
-    member_user_code
+    faq_code = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    context = models.TextField()
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
 
 
 class qna(models.Model):
-    qna_code = models.IntegerField(primary_key=True)
-    type
-    title
-    content
-    edit_date
-    reg_date
-    member_user_code
+    qna_code = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=2)
+    title = models.CharField(max_length=150)
+    content = models.TextField()
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
 
 
 class qna_answer(models.Model):
-    qna_aw_code = models.IntegerField(primary_key=True)
-    answer
-    edit_date
-    reg_date
-    qna_qna_code
+    qna_aw_code = models.AutoField(primary_key=True)
+    answer = models.TextField()
+    edit_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
+    qna_qna_code = member_user_code = models.ForeignKey(qna, on_delete=models.CASCADE)
 
 
 class n_product(models.Model):
-    n_code = models.IntegerField(primary_key=True)
-    n_name
-    n_img
-    n_price
+    n_code = models.AutoField(primary_key=True)
+    n_name = models.CharField(max_length=45, null=True)
+    n_img = models.CharField(max_length=45, null=True)
+    n_price = models.IntegerField()
 
 
 class d_product(models.Model):
-    d_code = models.IntegerField(primary_key=True)
-    d_name
-    d_img
-    d_price
+    d_code = models.AutoField(primary_key=True)
+    d_name = models.CharField(max_length=45, null=True)
+    d_img = models.CharField(max_length=45, null=True)
+    d_price = models.IntegerField()
