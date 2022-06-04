@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 
 class member(models.Model):
@@ -43,7 +42,7 @@ class bbs_Comment(models.Model):
     bbs_document_bbs_doc_code = models.ForeignKey(bbs_Document, on_delete=models.CASCADE)
 
 
-class bbs_file(models.Model):
+class bbs_File(models.Model):
     bbs_file_code = models.AutoField(primary_key=True)
     origin_name = models.CharField(max_length=255)
     file_path = models.CharField(max_length=255)
@@ -54,7 +53,7 @@ class bbs_file(models.Model):
     bbs_document_bbs_doc_code = models.ForeignKey(bbs_Document, on_delete=models.CASCADE)
 
 
-class bss_cate(models.Model):
+class bbs_Cate(models.Model):
     cate_code = models.AutoField(primary_key=True)
     user_cate = models.CharField(max_length=15, null=True)
     edit_date = models.DateTimeField(auto_now=True)
@@ -90,7 +89,7 @@ class qna(models.Model):
     member_user_code = models.ForeignKey(member, on_delete=models.CASCADE)
 
 
-class qna_answer(models.Model):
+class qna_Answer(models.Model):
     qna_aw_code = models.AutoField(primary_key=True)
     answer = models.TextField()
     edit_date = models.DateTimeField(auto_now=True)
@@ -98,14 +97,14 @@ class qna_answer(models.Model):
     qna_qna_code = models.ForeignKey(qna, on_delete=models.CASCADE)
 
 
-class n_product(models.Model):
+class n_Product(models.Model):
     n_code = models.AutoField(primary_key=True)
     n_name = models.CharField(max_length=45, null=True)
     n_img = models.CharField(max_length=45, null=True)
     n_price = models.IntegerField()
 
 
-class d_product(models.Model):
+class d_Product(models.Model):
     d_code = models.AutoField(primary_key=True)
     d_name = models.CharField(max_length=45, null=True)
     d_img = models.CharField(max_length=45, null=True)
