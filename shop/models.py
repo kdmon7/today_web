@@ -2,20 +2,25 @@ from django.db import models
 
 
 class member(models.Model):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+
     user_num = models.AutoField(primary_key=True)
     user_id = models.CharField(max_length=150)
     user_pw = models.CharField(max_length=255)
     user_name = models.CharField(max_length=10)
     user_nick = models.CharField(max_length=150)
     user_phone = models.CharField(max_length=100)
-    user_birthdate = models.DateTimeField()
-    user_gender = models.CharField(max_length=10)
+    user_birthdate = models.DateField()
+    user_gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     user_post = models.CharField(max_length=10)
     user_address1 = models.CharField(max_length=150)
     user_address2 = models.CharField(max_length=150)
-    user_category = models.CharField(max_length=50, null=True)
-    user_img = models.CharField(max_length=255, null=True)
-    user_msg = models.TextField(null=True)
+    user_category = models.CharField(max_length=50, null=True, blank=True)
+    user_img = models.CharField(max_length=255, null=True, blank=True)
+    user_msg = models.TextField(null=True, blank=True)
     reg_date = models.DateTimeField(auto_now_add=True)
     edit_date = models.DateTimeField(auto_now=True)
     user_grade = models.CharField(max_length=45)
@@ -26,6 +31,7 @@ class bbs_Document(models.Model):
     product_name = models.CharField(max_length=255)
     product_content = models.TextField()
     product_price = models.CharField(max_length=255)
+    product_img = models.CharField(max_length=255, null=True, blank=True)
     sold = models.CharField(max_length=1)
     edit_date = models.DateTimeField(auto_now=True)
     reg_date = models.DateTimeField(auto_now_add=True)
@@ -99,13 +105,13 @@ class qna_Answer(models.Model):
 
 class n_Product(models.Model):
     n_code = models.AutoField(primary_key=True)
-    n_name = models.CharField(max_length=45, null=True)
-    n_img = models.CharField(max_length=45, null=True)
+    n_name = models.CharField(max_length=45, null=True, blank=True)
+    n_img = models.CharField(max_length=45, null=True, blank=True)
     n_price = models.IntegerField()
 
 
 class d_Product(models.Model):
     d_code = models.AutoField(primary_key=True)
-    d_name = models.CharField(max_length=45, null=True)
-    d_img = models.CharField(max_length=45, null=True)
+    d_name = models.CharField(max_length=45, null=True, blank=True)
+    d_img = models.CharField(max_length=45, null=True, blank=True)
     d_price = models.IntegerField()
