@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from rest_framework import viewsets
+from .serializers import *
 from .models import *
 
 
@@ -44,3 +45,8 @@ def login(request):
 def register(request):
 
     return render(request, 'register.html')
+
+
+class CustomUserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = member.objects.all()
